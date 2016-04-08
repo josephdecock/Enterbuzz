@@ -83,7 +83,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMoqDataAttribute.cs" />
-    <Compile Include="FrenchTranslatorTests.cs" />
+    <Compile Include="Pipeline\PipelineTests.cs" />
+    <Compile Include="Translation\FrenchTranslatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

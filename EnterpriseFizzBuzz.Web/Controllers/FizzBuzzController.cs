@@ -14,6 +14,7 @@ namespace EnterpriseFizzBuzz.Web.Controllers
             this.pipeline = pipeline;
         }
 
+        [Route("api/fizzbuzz/{i}")]
         public IEnumerable<string> Get(int i, string languageCode = "en")
         {
             return Enumerable.Range(1, i).Select(n => pipeline.Go(n, languageCode));

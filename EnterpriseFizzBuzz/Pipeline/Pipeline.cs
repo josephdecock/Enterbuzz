@@ -1,25 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using Autofac.Features.Indexed;
+using EnterpriseFizzBuzz.Rules;
+using EnterpriseFizzBuzz.Translation;
 
 namespace EnterpriseFizzBuzz.Pipeline
 {
     public class Pipeline : IPipeline
     {
-        private readonly IEnumerable<IPipelineOperation> operations;
-        public Pipeline(IEnumerable<IPipelineOperation> operations)
+        private readonly IRulesService rulesService;
+        private readonly IIndex<string, ITranslator> translatorIndex;
+ 
+        public Pipeline(IRulesService rulesService, IIndex<string, ITranslator> translatorIndex)
         {
-            this.operations = operations;
+            this.rulesService = rulesService;
+            this.translatorIndex = translatorIndex;
         }
 
         public string Go(int i, string languageCode)
         {
-            var init = new PipelineData {Label = string.Empty, Number = i};
-            var result = operations.Aggregate(init, (current, pipelineOperation) => pipelineOperation.Operate(current, languageCode));
-            if (result.Label == string.Empty)
+            var rules = rulesService.GetRules();
+            var translator = translatorIndex[languageCode]; //Error handling omitted for brevity
+
+            var result = rules
+                .Where(rule => i%rule.Modulo == 0)
+                .Aggregate(String.Empty, (current, rule) => current + translator.Translate(rule.Label));
+ 
+            if (result == String.Empty)
             {
-                result.Label = i.ToString();
+                result = i.ToString();
             }
-            return result.Label;
+
+            return result;
         }
     }
 }

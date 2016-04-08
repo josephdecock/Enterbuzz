@@ -20,8 +20,7 @@ namespace EnterpriseFizzBuzz.Web
 
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterModule<PipelineModule>();
-            builder.RegisterModule<TranslationModule>();
+            builder.RegisterModule<EnterpriseFizzBuzzModule>();
             var container = builder.Build();
             var config = GlobalConfiguration.Configuration;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

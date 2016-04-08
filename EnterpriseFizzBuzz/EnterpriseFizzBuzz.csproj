@@ -49,20 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pipeline\Buzzer.cs" />
-    <Compile Include="Pipeline\Fizzer.cs" />
     <Compile Include="Pipeline\IPipeline.cs" />
-    <Compile Include="Pipeline\IPipelineOperation.cs" />
     <Compile Include="Pipeline\Pipeline.cs" />
-    <Compile Include="Pipeline\PipelineData.cs" />
-    <Compile Include="Pipeline\PipelineModule.cs" />
+    <Compile Include="EnterpriseFizzBuzzModule.cs" />
+    <Compile Include="Rules\IRulesService.cs" />
+    <Compile Include="Rules\Rule.cs" />
+    <Compile Include="Rules\RulesService.cs" />
     <Compile Include="Translation\ArabicTranslator.cs" />
     <Compile Include="Translation\EnglishTranslator.cs" />
     <Compile Include="Translation\FrenchTranslator.cs" />
     <Compile Include="Translation\ITranslator.cs" />
     <Compile Include="Translation\JapaneseTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Translation\TranslationModule.cs" />
     <Compile Include="Translation\TranslatorBase.cs" />
   </ItemGroup>
   <ItemGroup>
