@@ -12,7 +12,6 @@ namespace EnterpriseFizzBuzz.Pipeline
             this.translatorIndex = translatorIndex;
         }
 
-
         public PipelineData Operate(PipelineData input, string languageCode)
         {
             if (input.Number%5 == 0)
