@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Pipeline\Buzzer.cs" />
     <Compile Include="Pipeline\Fizzer.cs" />
+    <Compile Include="Pipeline\IPipeline.cs" />
     <Compile Include="Pipeline\IPipelineOperation.cs" />
     <Compile Include="Pipeline\Pipeline.cs" />
     <Compile Include="Pipeline\PipelineData.cs" />
