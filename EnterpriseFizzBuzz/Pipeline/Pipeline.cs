@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Autofac.Features.Indexed;
 using EnterpriseFizzBuzz.Rules;
 using EnterpriseFizzBuzz.Translation;
 
@@ -9,23 +8,22 @@ namespace EnterpriseFizzBuzz.Pipeline
     public class Pipeline : IPipeline
     {
         private readonly IRulesService rulesService;
-        private readonly IIndex<string, ITranslator> translatorIndex;
- 
-        public Pipeline(IRulesService rulesService, IIndex<string, ITranslator> translatorIndex)
+        private readonly ITranslator translator;
+
+        public Pipeline(IRulesService rulesService, ITranslator translator)
         {
             this.rulesService = rulesService;
-            this.translatorIndex = translatorIndex;
+            this.translator = translator;
         }
 
-        public string Go(int i, string languageCode)
+        public string Go(int i, SupportedLanguage lang)
         {
             var rules = rulesService.GetRules();
-            var translator = translatorIndex[languageCode]; //Error handling omitted for brevity
 
             var result = rules
-                .Where(rule => i%rule.Modulo == 0)
-                .Aggregate(String.Empty, (current, rule) => current + translator.Translate(rule.Label));
- 
+                .Where(rule => i % rule.Modulo == 0)
+                .Aggregate(String.Empty, (current, rule) => current + translator.Translate(rule.Label, lang));
+
             if (result == String.Empty)
             {
                 result = i.ToString();

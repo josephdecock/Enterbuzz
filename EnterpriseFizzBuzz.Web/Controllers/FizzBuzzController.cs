@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Http;
 using EnterpriseFizzBuzz.Pipeline;
+using EnterpriseFizzBuzz.Translation;
 
 namespace EnterpriseFizzBuzz.Web.Controllers
 {
@@ -15,9 +16,9 @@ namespace EnterpriseFizzBuzz.Web.Controllers
         }
 
         [Route("api/fizzbuzz/{i}")]
-        public IEnumerable<string> Get(int i, string languageCode = "en")
+        public IEnumerable<string> Get(int i, SupportedLanguage lang = SupportedLanguage.English)
         {
-            return Enumerable.Range(1, i).Select(n => pipeline.Go(n, languageCode));
+            return Enumerable.Range(1, i).Select(n => pipeline.Go(n, lang));
         }
     }
 }
